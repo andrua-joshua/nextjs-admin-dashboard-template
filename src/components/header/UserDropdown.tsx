@@ -6,9 +6,13 @@ import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useAuth } from "@/context/AuthContext";
 
 export default function UserDropdown() {
+
   const [isOpen, setIsOpen] = useState(false);
   const { user, logout } = useAuth();
-
+  function normalizeImageUrl(url: string): string {
+    // Fix missing slash after port number
+    return url.replace(/(\d)(data)/, '$1/$2');
+  }
 function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
   e.stopPropagation();
   setIsOpen((prev) => !prev);
@@ -33,7 +37,7 @@ function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
             <Image
               width={44}
               height={44}
-              src={user.profileImg}
+              src={normalizeImageUrl(user?.profileImg || '')}
               alt="User"
             />
           ) : (

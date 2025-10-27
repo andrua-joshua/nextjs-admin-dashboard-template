@@ -22,6 +22,11 @@ const ProvidersPage: React.FC = () => {
   const [isLoadingReviews, setIsLoadingReviews] = useState<boolean>(false);
   const { isOpen, openModal, closeModal } = useModal();
 
+  function normalizeImageUrl(url: string): string {
+    // Fix missing slash after port number
+    return url.replace(/(\d)(data)/, '$1/$2');
+  }
+
   const fetchProviders = async (page: number = 0) => {
     setIsLoading(true);
     setError(null);
@@ -172,7 +177,7 @@ const ProvidersPage: React.FC = () => {
                         {provider.user.profileImg ? (
                           <Image
                             className="h-10 w-10 rounded-full"
-                            src={fixImageUrl(provider.user.profileImg)}
+                            src={normalizeImageUrl(provider.user.profileImg || '')}
                             alt={provider.providerName}
                             width={40}
                             height={40}
@@ -330,7 +335,7 @@ const ProvidersPage: React.FC = () => {
                     {selectedProvider.user.profileImg ? (
                       <Image
                         className="h-24 w-24 rounded-full"
-                        src={fixImageUrl(selectedProvider.user.profileImg)}
+                        src={normalizeImageUrl(selectedProvider.user.profileImg || '')}
                         alt={selectedProvider.providerName}
                         width={96}
                         height={96}
@@ -434,7 +439,7 @@ const ProvidersPage: React.FC = () => {
                               {review.user.profileImg ? (
                                 <Image
                                   className="h-10 w-10 rounded-full"
-                                  src={fixImageUrl(review.user.profileImg)}
+                                  src={normalizeImageUrl(review.user.profileImg || '')}
                                   alt={review.user.fullName}
                                   width={40}
                                   height={40}

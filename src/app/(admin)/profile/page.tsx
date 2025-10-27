@@ -17,6 +17,15 @@ export default function ProfilePage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
+  function normalizeImageUrl(url: string): string {
+    if (!url) return '';
+    
+    // Fix missing slash after port number (e.g., 8087data -> 8087/data)
+    const normalized = url.replace(/(:8087)(?!\/)(data)/g, '$1/$2');
+    
+    return normalized;
+  }
   
   // Form state
   const [formData, setFormData] = useState({
@@ -128,7 +137,7 @@ export default function ProfilePage() {
                 <Image
                   width={80}
                   height={80}
-                  src={user.profileImg}
+                  src={normalizeImageUrl(user.profileImg || '')}
                   alt="Profile"
                   className="w-full h-full object-cover"
                 />

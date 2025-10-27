@@ -29,10 +29,19 @@ export default function KycPage() {
     if (!url) return '';
     // If URL doesn't have a protocol, assume it's relative and add the base URL
     if (!url.startsWith('http')) {
-      return `${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080'}${url}`;
+      return `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.servipay.net'}${url}`;
     }
     return url;
   };
+
+  function normalizeImageUrl(url: string): string {
+    if (!url) return '';
+    
+    // Fix missing slash after port number (e.g., 8087data -> 8087/data)
+    const normalized = url.replace(/(:8087)(?!\/)(data)/g, '$1/$2');
+    
+    return normalized;
+  }
 
   const fetchKycRecords = async (page: number = 0) => {
     try {
@@ -227,7 +236,7 @@ export default function KycPage() {
                         <div className="flex-shrink-0 h-10 w-10">
                           {kyc.user.profileImg ? (
                             <Image
-                              src={fixImageUrl(kyc.user.profileImg)}
+                              src={normalizeImageUrl(kyc.user.profileImg || '')}
                               alt={kyc.user.fullName}
                               width={40}
                               height={40}
@@ -341,7 +350,7 @@ export default function KycPage() {
                 <div className="flex-shrink-0 h-16 w-16">
                   {selectedKyc.user.profileImg ? (
                     <Image
-                      src={fixImageUrl(selectedKyc.user.profileImg)}
+                      src={normalizeImageUrl(selectedKyc.user.profileImg || '')}
                       alt={selectedKyc.user.fullName}
                       width={64}
                       height={64}
@@ -433,14 +442,14 @@ export default function KycPage() {
                   </h5>
                   <div className="relative h-64 w-full bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
                     <Image
-                      src={fixImageUrl(selectedKyc.nationalIdUrl)}
+                      src={normalizeImageUrl(selectedKyc.nationalIdUrl || '')}
                       alt="National ID"
                       fill
                       className="object-contain"
                     />
                   </div>
                   <a 
-                    href={fixImageUrl(selectedKyc.nationalIdUrl)} 
+                    href={normalizeImageUrl(selectedKyc.nationalIdUrl || '')} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="mt-2 inline-block text-sm text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"
@@ -454,14 +463,14 @@ export default function KycPage() {
                   </h5>
                   <div className="relative h-64 w-full bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden">
                     <Image
-                      src={fixImageUrl(selectedKyc.selfieUrl)}
+                      src={normalizeImageUrl(selectedKyc.selfieUrl || '')}
                       alt="Selfie"
                       fill
                       className="object-contain"
                     />
                   </div>
                   <a 
-                    href={fixImageUrl(selectedKyc.selfieUrl)} 
+                    href={normalizeImageUrl(selectedKyc.selfieUrl || '')} 
                     target="_blank" 
                     rel="noopener noreferrer"
                     className="mt-2 inline-block text-sm text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300"

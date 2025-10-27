@@ -131,7 +131,7 @@ const ReviewsPage: React.FC = () => {
     if (!url) return '';
     // If URL doesn't have a protocol, assume it's relative and add the base URL
     if (!url.startsWith('http')) {
-      return `${process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8080'}${url}`;
+      return `${process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.servipay.net'}${url}`;
     }
     return url;
   };

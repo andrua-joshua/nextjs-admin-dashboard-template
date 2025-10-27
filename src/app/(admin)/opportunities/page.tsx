@@ -29,6 +29,10 @@ export default function OpportunitiesPage() {
   const [selectedOpportunity, setSelectedOpportunity] = useState<Opportunity | null>(null);
   const { isOpen, openModal, closeModal } = useModal();
 
+  function normalizeImageUrl(url: string): string {
+    // Fix missing slash after port number
+    return url.replace(/(\d)(data)/, '$1/$2');
+  }
   const fetchOpportunities = async () => {
     try {
       setIsLoading(true);
@@ -353,7 +357,7 @@ export default function OpportunitiesPage() {
                         {opportunity.user.profileImg ? (
                           <Image
                             className="h-8 w-8 rounded-full"
-                            src={opportunity.user.profileImg}
+                            src={normalizeImageUrl(opportunity.user.profileImg || '')}
                             alt={opportunity.user.fullName}
                             width={32}
                             height={32}

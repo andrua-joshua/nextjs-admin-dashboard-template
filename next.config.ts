@@ -6,17 +6,26 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'http',
-        hostname: '192.168.1.5',
-        port: '8087',
-        pathname: '/data/**',
+        hostname: '**',
       },
-      // Add other environments as needed
       {
-        protocol: 'http',
-        hostname: 'localhost',
-        port: '8087',
-        pathname: '/data/**',
+        protocol: 'https',
+        hostname: '**',
       },
+
+      // {
+      //   protocol: 'http',
+      //   hostname: '192.168.1.5',
+      //   port: '8087',
+      //   pathname: '/data/**',
+      // },
+      // // Add other environments as needed
+      // {
+      //   protocol: 'http',
+      //   hostname: 'localhost',
+      //   port: '8087',
+      //   pathname: '/data/**',
+      // },
     ],
   },
   eslint: {

@@ -19,6 +19,10 @@ export default function UsersPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
 
+  function normalizeImageUrl(url: string): string {
+    // Fix missing slash after port number
+    return url.replace(/(\d)(data)/, '$1/$2');
+  }
   // Function to fix malformed image URLs
   const fixImageUrl = (url: string | null): string | null => {
     if (!url) return null;
@@ -176,7 +180,7 @@ export default function UsersPage() {
                         {fixImageUrl(user.profileImg) ? (
                           <Image
                             className="h-10 w-10 rounded-full"
-                            src={fixImageUrl(user.profileImg)!}
+                            src={normalizeImageUrl(user.profileImg || '')!}
                             alt={user.fullName}
                             width={40}
                             height={40}
