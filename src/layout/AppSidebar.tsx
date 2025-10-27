@@ -331,15 +331,15 @@ const AppSidebar: React.FC = () => {
                 className="dark:hidden"
                 src="/images/logo/servipay.jpeg"
                 alt="ServiPay"
-                width={150}
-                height={40}
+                width={80}
+                height={80}
               />
               <Image
                 className="hidden dark:block"
                 src="/images/logo/servipay.jpeg"
                 alt="ServiPay"
-                width={150}
-                height={40}
+                width={80}
+                height={80}
               />
             </>
           ) : (
