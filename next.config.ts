@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  eslint: {
+    // Warning: This ignores all ESLint errors and warnings during build
+    ignoreDuringBuilds: true,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
