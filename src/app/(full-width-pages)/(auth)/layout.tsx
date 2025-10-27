@@ -22,12 +22,15 @@ export default function AuthLayout({
               <GridShape />
               <div className="flex flex-col items-center max-w-xs">
                 <Link href="/" className="block mb-4">
-                  <Image
+                <h1 className="mb-2 font-semibold text-gray-800 text-title-sm dark:text-white/90 sm:text-title-md">
+                ServiPay
+              </h1>
+                  {/* <Image
                     width={231}
                     height={48}
                     src="./images/logo/auth-logo.svg"
                     alt="Logo"
-                  />
+                  /> */}
                 </Link>
                 <p className="text-center text-gray-400 dark:text-white/60">
                   Instant help nearby
