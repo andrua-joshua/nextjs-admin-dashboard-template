@@ -1,6 +1,6 @@
 // API Configuration
 export const API_CONFIG = {
-  BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'http://63.250.40.142:8080', //|| 'http://localhost:8080',
+  BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL || 'https://api.servipay.net', //|| 'http://localhost:8080',
   ENDPOINTS: {
     LOGIN: '/api/v1/login',
     GET_PROFILE: '/api/v1/getProfile',
