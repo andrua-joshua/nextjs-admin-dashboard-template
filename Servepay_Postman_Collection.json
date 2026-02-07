@@ -1,0 +1,2829 @@
+{
+  "info": {
+    "name": "Servepay Backend API",
+    "description": "Complete API collection for Servepay Backend Services",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Signup",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "device-123"
+              },
+              {
+                "key": "X-Device-Type",
+                "value": "Mobile"
+              },
+              {
+                "key": "X-Device-Model",
+                "value": "iPhone 12"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"phone\": \"+256701234567\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/signup",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "signup"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "device-123"
+              },
+              {
+                "key": "X-Device-Type",
+                "value": "Mobile"
+              },
+              {
+                "key": "X-Device-Model",
+                "value": "iPhone 12"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "login"]
+            }
+          }
+        },
+        {
+          "name": "Validate Token",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "device-123"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/auth/validate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "auth", "validate"]
+            }
+          }
+        },
+        {
+          "name": "Add Staff Member (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"staff@example.com\",\n  \"password\": \"staffpass123\",\n  \"firstName\": \"Staff\",\n  \"lastName\": \"Member\",\n  \"phone\": \"+256701234567\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addStaffMember?role=ADMIN",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addStaffMember"],
+              "query": [
+                {
+                  "key": "role",
+                  "value": "ADMIN",
+                  "description": "USER, ADMIN, STAFF"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User Role (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateUserRole/5?role=STAFF",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateUserRole", "5"],
+              "query": [
+                {
+                  "key": "role",
+                  "value": "STAFF"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send OTP Email",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sendOTPEmail?email=user@example.com",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "sendOTPEmail"],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "user@example.com"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send OTP Both Channels",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sendOTPBothChannels?phone=%2B256701234567&email=user@example.com",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "sendOTPBothChannels"],
+              "query": [
+                {
+                  "key": "phone",
+                  "value": "+256701234567"
+                },
+                {
+                  "key": "email",
+                  "value": "user@example.com"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Profile",
+      "item": [
+        {
+          "name": "Get Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProfile",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProfile"]
+            }
+          }
+        },
+        {
+          "name": "Get Profile By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProfileById/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProfileById", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get All Users (STAFF ONLY)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getAllUsers?page=0&size=10&role=USER",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getAllUsers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "role",
+                  "value": "USER"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchUsers?page=0&size=10&query=john",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchUsers"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "john"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "firstName",
+                  "value": "John"
+                },
+                {
+                  "key": "lastName",
+                  "value": "Doe"
+                },
+                {
+                  "key": "file",
+                  "type": "file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateUser",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateUser"]
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"oldPassword\": \"password123\",\n  \"newPassword\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/changePassword",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "changePassword"]
+            }
+          }
+        },
+        {
+          "name": "Change Phone",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/changePhone?newPhone=%2B256701234567",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "changePhone"],
+              "query": [
+                {
+                  "key": "newPhone",
+                  "value": "+256701234567"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Send Forgot Password OTP",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sendForgotPasswordOtp?email=user@example.com",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "sendForgotPasswordOtp"],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "user@example.com"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Forgot Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Device-ID",
+                "value": "device-123"
+              },
+              {
+                "key": "X-Device-Type",
+                "value": "Mobile"
+              },
+              {
+                "key": "X-Device-Model",
+                "value": "iPhone 12"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"user@example.com\",\n  \"otp\": \"123456\",\n  \"newPassword\": \"newpassword123\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/forgot-password",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "forgot-password"]
+            }
+          }
+        },
+        {
+          "name": "Send OTP",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/sendOTP?phone=%2B256701234567",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "sendOTP"],
+              "query": [
+                {
+                  "key": "phone",
+                  "value": "+256701234567"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Verify OTP",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/verifyOTP?phone=%2B256701234567&otp=123456",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "verifyOTP"],
+              "query": [
+                {
+                  "key": "phone",
+                  "value": "+256701234567"
+                },
+                {
+                  "key": "otp",
+                  "value": "123456"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Service Providers",
+      "item": [
+        {
+          "name": "Become Provider",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "businessName",
+                  "value": "My Business"
+                },
+                {
+                  "key": "businessType",
+                  "value": "1"
+                },
+                {
+                  "key": "file",
+                  "type": "file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/becomeProvider",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "becomeProvider"]
+            }
+          }
+        },
+        {
+          "name": "Get Provider By User ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProviderByUserId/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProviderByUserId", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get All Providers (Simple)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProviders",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProviders"]
+            }
+          }
+        },
+        {
+          "name": "Get All Providers (Paginated)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getAllProviders?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getAllProviders"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Service Provider By User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getServiceProviderByUser",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getServiceProviderByUser"]
+            }
+          }
+        },
+        {
+          "name": "Get Providers Count By Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProvidersCountByCategory?category=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProvidersCountByCategory"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Providers By Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProviderByLocation?page=0&size=10&query=Kampala",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProviderByLocation"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "Kampala"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Providers By Service",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProviderByService?page=0&size=10&query=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProviderByService"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchProvider?page=0&size=10&query=plumber",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchProvider"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "plumber"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/filterProviders?page=0&size=10&query=plumber&kycVerification=VERIFIED",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "filterProviders"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "plumber"
+                },
+                {
+                  "key": "kycVerification",
+                  "value": "VERIFIED"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Provider",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "businessName",
+                  "value": "Updated Business"
+                },
+                {
+                  "key": "file",
+                  "type": "file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateProvider",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateProvider"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Opportunities",
+      "item": [
+        {
+          "name": "Add Opportunity (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Opportunity Title\",\n  \"description\": \"Opportunity Description\",\n  \"category\": 1,\n  \"amount\": 50000\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addOpportunity",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addOpportunity"]
+            }
+          }
+        },
+        {
+          "name": "Get Opportunity By ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOpportunityById/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOpportunityById", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get All Opportunities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getAllOpportunities",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getAllOpportunities"]
+            }
+          }
+        },
+        {
+          "name": "Get Opportunities Count By Category",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOpportunitiesCountByCategory?category=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOpportunitiesCountByCategory"],
+              "query": [
+                {
+                  "key": "category",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User Opportunities",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getUserOpportunities/1?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getUserOpportunities", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Opportunities By Service",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOpportunitiesByService/1?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOpportunitiesByService", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Opportunities By Location",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOpportunitiesByLocation?page=0&size=10&query=Kampala",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOpportunitiesByLocation"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "Kampala"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Opportunities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchOpportunities?page=0&size=10&query=painting",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchOpportunities"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "painting"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Opportunities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/filterOpportunities?page=0&size=10&query=painting&min=10000&max=500000",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "filterOpportunities"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "query",
+                  "value": "painting"
+                },
+                {
+                  "key": "min",
+                  "value": "10000"
+                },
+                {
+                  "key": "max",
+                  "value": "500000"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Contracts & Offers",
+      "item": [
+        {
+          "name": "Make Offer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"opportunityId\": 1,\n  \"price\": 45000,\n  \"description\": \"I can complete this job\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/makeOffer",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "makeOffer"]
+            }
+          }
+        },
+        {
+          "name": "Get All Offers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getAllOffers",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getAllOffers"]
+            }
+          }
+        },
+        {
+          "name": "Get Offers By Opportunity",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOffersByOpportunity/1?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOffersByOpportunity", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Offers By Provider",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOffersByProvider/1?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOffersByProvider", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Offers By Provider And Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOffersByProviderAndStatus/1?page=0&size=10&status=PENDING",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOffersByProviderAndStatus", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Provider Active And In Progress Offers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProviderActiveAndInProgressOffers/1?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProviderActiveAndInProgressOffers", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Offer Status",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateOfferStatus/1?status=ACCEPTED",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateOfferStatus", "1"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ACCEPTED"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Express Offer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"providerId\": 1,\n  \"amount\": 25000,\n  \"description\": \"Quick job offer\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/createOffer",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "createOffer"]
+            }
+          }
+        },
+        {
+          "name": "Accept Offer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/acceptOffer/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "acceptOffer", "1"]
+            }
+          }
+        },
+        {
+          "name": "Mark Offer Complete",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/markOfferComplete/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "markOfferComplete", "1"]
+            }
+          }
+        },
+        {
+          "name": "Confirm Completion",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/confirmCompletion/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "confirmCompletion", "1"]
+            }
+          }
+        },
+        {
+          "name": "Decline Completion",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/declineCompletion/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "declineCompletion", "1"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Offer",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/cancelOffer/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "cancelOffer", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Offers By User And Status",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOffersByUserAndStatus?status=PENDING&page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOffersByUserAndStatus"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Offers By Provider And Status (Express)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getOffersByProviderAndStatus?provider=1&status=PENDING&page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getOffersByProviderAndStatus"],
+              "query": [
+                {
+                  "key": "provider",
+                  "value": "1"
+                },
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reviews & Ratings",
+      "item": [
+        {
+          "name": "Get User Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getUserReviews/1?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getUserReviews", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add User Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 5,\n  \"comment\": \"Great service!\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addUserReview/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addUserReview", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Provider Reviews",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getProviderReviews/1?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getProviderReviews", "1"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Provider Review",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rating\": 4,\n  \"comment\": \"Good work, on time\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addReview/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addReview", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "KYC & Verification",
+      "item": [
+        {
+          "name": "Add KYC Details",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "nationalId",
+                  "type": "file"
+                },
+                {
+                  "key": "selfie",
+                  "type": "file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addKycDetails",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addKycDetails"]
+            }
+          }
+        },
+        {
+          "name": "Update KYC Status (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"VERIFIED\",\n  \"rejectionReason\": \"\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateKycStatus/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateKycStatus", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get All KYC (STAFF ONLY)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getAllKyc?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getAllKyc"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get KYC By Status (STAFF ONLY)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getKycByStatus?status=PENDING&page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getKycByStatus"],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Wallet & Payments",
+      "item": [
+        {
+          "name": "Get User Wallet Account",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getUserWalletAccount",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getUserWalletAccount"]
+            }
+          }
+        },
+        {
+          "name": "Get User Transactions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getUserTransactions?page=0&size=10",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getUserTransactions"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Make Deposit",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 50000,\n  \"paymentMethod\": \"MOBILE_MONEY\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/makeDeposit",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "makeDeposit"]
+            }
+          }
+        },
+        {
+          "name": "Make Withdraw",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 25000,\n  \"paymentMethod\": \"MOBILE_MONEY\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/makeWithdraw",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "makeWithdraw"]
+            }
+          }
+        },
+        {
+          "name": "Make Express Offer Payment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/makeExpressOfferPayment/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "makeExpressOfferPayment", "1"]
+            }
+          }
+        },
+        {
+          "name": "Make Contract Payment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/makeContractPayment/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "makeContractPayment", "1"]
+            }
+          }
+        },
+        {
+          "name": "Confirm Cash Payment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/confirmCashPayment/1?id=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "confirmCashPayment", "1"],
+              "query": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Media Upload",
+      "item": [
+        {
+          "name": "Upload Media",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/uploadMedia",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "uploadMedia"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Categories",
+      "item": [
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getAllCategories?page=0&size=10&sortBy=title",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getAllCategories"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "title"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Category",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchCategory?query=plumbing",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchCategory"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "plumbing"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Category (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Plumbing"
+                },
+                {
+                  "key": "description",
+                  "value": "Plumbing services"
+                },
+                {
+                  "key": "file",
+                  "type": "file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addCategory",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addCategory"]
+            }
+          }
+        },
+        {
+          "name": "Update Category (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Updated Plumbing"
+                },
+                {
+                  "key": "file",
+                  "type": "file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateCategory/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateCategory", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Category (STAFF ONLY)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/deleteCategory/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "deleteCategory", "1"]
+            }
+          }
+        },
+        {
+          "name": "Add Bulk Categories (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "CSV or Excel file"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addBulkCategories",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addBulkCategories"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Location Management (STAFF ONLY)",
+      "item": [
+        {
+          "name": "Get Countries",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getCountries",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getCountries"]
+            }
+          }
+        },
+        {
+          "name": "Get Districts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getDistricts?page=0&size=10&sortBy=name",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getDistricts"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Districts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchDistricts?query=Kampala",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchDistricts"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Kampala"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add District (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addDistrict?name=NewDistrict&country=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addDistrict"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "NewDistrict"
+                },
+                {
+                  "key": "country",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update District (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateDistrict/1?name=UpdatedDistrict",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateDistrict", "1"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "UpdatedDistrict"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete District (STAFF ONLY)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/deleteDistrict/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "deleteDistrict", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Counties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getCounties?page=0&size=10&sortBy=name",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getCounties"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Counties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchCounties?query=Kampala",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchCounties"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Kampala"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add County (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addCounty?name=NewCounty&district=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addCounty"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "NewCounty"
+                },
+                {
+                  "key": "district",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update County (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateCounty/1?name=UpdatedCounty",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateCounty", "1"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "UpdatedCounty"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete County (STAFF ONLY)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/deleteCounty/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "deleteCounty", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Subcounties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getSubcounties?page=0&size=10&sortBy=name",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getSubcounties"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Subcounties",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchSubcounties?query=Makindye",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchSubcounties"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Makindye"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Subcounty (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addSubcounty?name=NewSubcounty&county=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addSubcounty"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "NewSubcounty"
+                },
+                {
+                  "key": "county",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Subcounty (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateSubcounty/1?name=UpdatedSubcounty",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateSubcounty", "1"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "UpdatedSubcounty"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Subcounty (STAFF ONLY)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/deleteSubcounty/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "deleteSubcounty", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Parishes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getParishes?page=0&size=10&sortBy=name",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getParishes"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Parishes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchParishes?query=Rubaga",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchParishes"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Rubaga"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Parish (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addParish?name=NewParish&subcounty=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addParish"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "NewParish"
+                },
+                {
+                  "key": "subcounty",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Parish (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateParish/1?name=UpdatedParish",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateParish", "1"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "UpdatedParish"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Parish (STAFF ONLY)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/deleteParish/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "deleteParish", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Villages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/getVillages?page=0&size=10&sortBy=name",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "getVillages"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "name"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Villages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/searchVillages?query=Nakasero",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "searchVillages"],
+              "query": [
+                {
+                  "key": "query",
+                  "value": "Nakasero"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Village (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addVillage?name=NewVillage&parish=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addVillage"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "NewVillage"
+                },
+                {
+                  "key": "parish",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Village (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateVillage/1?name=UpdatedVillage",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateVillage", "1"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "UpdatedVillage"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Village (STAFF ONLY)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/deleteVillage/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "deleteVillage", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Referral Program",
+      "item": [
+        {
+          "name": "Generate Referral Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/referral/generate",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "referral", "generate"]
+            }
+          }
+        },
+        {
+          "name": "Get My Referral Codes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/referral/my-codes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "referral", "my-codes"]
+            }
+          }
+        },
+        {
+          "name": "Claim Referral Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"referralCode\": \"REF123456\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/referral/claim",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "referral", "claim"]
+            }
+          }
+        },
+        {
+          "name": "Check If User Claimed Code",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/referral/check-claim/REF123456",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "referral", "check-claim", "REF123456"]
+            }
+          }
+        },
+        {
+          "name": "Get Claims For Code",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/referral/claims/REF123456",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "referral", "claims", "REF123456"]
+            }
+          }
+        },
+        {
+          "name": "Get My Referral Claims",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/referral/my-claims",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "referral", "my-claims"]
+            }
+          }
+        },
+        {
+          "name": "Get Referral Code Details",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/referral/REF123456",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "referral", "REF123456"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "Bearer your_token_here",
+      "type": "string"
+    }
+  ]
+}

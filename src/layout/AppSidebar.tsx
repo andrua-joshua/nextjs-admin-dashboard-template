@@ -15,6 +15,10 @@ import {
   UserCircleIcon,
   StarIcon,
   FileIcon,
+  FolderIcon,
+  ListIcon,
+  PaperPlaneIcon,
+  DollarLineIcon,
   BoltIcon,
 } from "../icons/index";
 import SidebarWidget from "./SidebarWidget";
@@ -46,6 +50,26 @@ const navItems: NavItem[] = [
     icon: <StarIcon />,
     name: "Reviews",
     path: "/reviews",
+  },
+  {
+    icon: <FolderIcon />,
+    name: "Categories",
+    path: "/categories",
+  },
+  {
+    icon: <ListIcon />,
+    name: "Locations",
+    path: "/locations",
+  },
+  {
+    icon: <PaperPlaneIcon />,
+    name: "Referrals",
+    path: "/referrals",
+  },
+  {
+    icon: <DollarLineIcon />,
+    name: "Wallets",
+    path: "/wallets",
   },
   {
     icon: <UserCircleIcon />,
