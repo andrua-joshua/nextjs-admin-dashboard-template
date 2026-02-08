@@ -607,6 +607,37 @@ export const deleteCategory = async (id: number) => {
   }
 };
 
+// Media upload (used for flags, icons, etc.)
+export const uploadMedia = async (file: File) => {
+  const token = getToken();
+  try {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const headers: any = token ? { 'Authorization': `Bearer ${token}` } : {};
+
+    const response = await fetch(getApiUrl(API_CONFIG.ENDPOINTS.UPLOAD_MEDIA), {
+      method: 'PUT',
+      headers,
+      body: formData,
+    });
+
+    if (!response.ok) {
+      if (response.status === 401) {
+        removeToken();
+        throw new Error('Authentication failed. Please login again.');
+      }
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Upload media error:', error);
+    throw error;
+  }
+};
+
 
 // Locations
 export const getCountries = async () => {
@@ -820,10 +851,11 @@ export const addDistrict = async (name: string, countryId: number) => {
   }
 };
 
-export const addCountry = async (name: string) => {
+export const addCountry = async (name: string, flag?: string) => {
   const token = getToken();
   try {
-    const url = `${getApiUrl(API_CONFIG.ENDPOINTS.ADD_COUNTRY)}?name=${encodeURIComponent(name)}`;
+    const query = `?name=${encodeURIComponent(name)}${flag ? `&flag=${encodeURIComponent(flag)}` : ''}`;
+    const url = `${getApiUrl(API_CONFIG.ENDPOINTS.ADD_COUNTRY)}${query}`;
     const response = await fetch(url, {
       method: 'POST',
       headers: token ? { Authorization: `Bearer ${token}` } : {},

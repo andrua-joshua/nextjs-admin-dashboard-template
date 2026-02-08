@@ -2061,6 +2061,83 @@
           }
         },
         {
+          "name": "Add Country (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addCountry?name=NewCountry&flag=🇺🇬",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addCountry"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "NewCountry"
+                },
+                {
+                  "key": "flag",
+                  "value": "🇺🇬"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Country (STAFF ONLY)",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/updateCountry/1?name=UpdatedCountry&flag=🇺🇬",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "updateCountry", "1"],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "UpdatedCountry"
+                },
+                {
+                  "key": "flag",
+                  "value": "🇺🇬"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Country (STAFF ONLY)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8080/api/v1/deleteCountry/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "deleteCountry", "1"]
+            }
+          }
+        },
+        {
           "name": "Get Districts",
           "request": {
             "method": "GET",

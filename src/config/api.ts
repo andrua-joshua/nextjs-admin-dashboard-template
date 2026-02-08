@@ -35,6 +35,7 @@ export const API_CONFIG = {
     UPDATE_CATEGORY: '/api/v1/updateCategory',
     DELETE_CATEGORY: '/api/v1/deleteCategory',
     ADD_BULK_CATEGORIES: '/api/v1/addBulkCategories',
+    UPLOAD_MEDIA: '/api/v1/uploadMedia',
     // Locations
     GET_COUNTRIES: '/api/v1/getCountries',
     SEARCH_COUNTRIES: '/api/v1/searchCountries',
