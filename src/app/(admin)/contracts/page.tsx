@@ -560,11 +560,13 @@ export default function ContractsPage() {
                   <div>
                     <span className="text-sm font-medium text-gray-500 dark:text-gray-400">Services:</span>
                     <div className="ml-2 flex flex-wrap gap-1">
-                      {selectedContract.provider.services.map((service) => (
-                        <span key={service.id} className="inline-flex px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/20 dark:text-blue-400">
-                          {service.title}
-                        </span>
-                      ))}
+                      {selectedContract.provider.services && Array.isArray(selectedContract.provider.services) ? (
+                        selectedContract.provider.services.map((service) => (
+                          <span key={service.id} className="inline-flex px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/20 dark:text-blue-400">
+                            {typeof service === 'string' ? service : service.title || service.name || String(service)}
+                          </span>
+                        ))
+                      ) : null}
                     </div>
                   </div>
                 </div>

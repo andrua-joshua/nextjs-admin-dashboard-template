@@ -640,10 +640,10 @@ export const uploadMedia = async (file: File) => {
 
 
 // Locations
-export const getCountries = async () => {
+export const getCountries = async (page: number = 0, size: number = 10) => {
   const token = getToken();
   try {
-    const response = await fetch(getApiUrl(API_CONFIG.ENDPOINTS.GET_COUNTRIES), {
+    const response = await fetch(getApiUrl(`${API_CONFIG.ENDPOINTS.GET_COUNTRIES}?page=${page}&size=${size}`), {
       method: 'GET',
       headers: token
         ? { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' }
@@ -1143,6 +1143,156 @@ export const deleteVillage = async (id: number) => {
   }
 };
 
+// Bulk location helpers
+export const addBulkCountries = async (file: File) => {
+  const token = getToken();
+  try {
+    const url = getApiUrl(API_CONFIG.ENDPOINTS.ADD_BULK_COUNTRIES);
+    const formData = new FormData();
+    formData.append('file', file);
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Add bulk countries error:', error);
+    throw error;
+  }
+};
+
+export const addBulkDistricts = async (file: File, countryId: number) => {
+  const token = getToken();
+  try {
+    const url = getApiUrl(API_CONFIG.ENDPOINTS.ADD_BULK_DISTRICTS);
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('country', String(countryId));
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Add bulk districts error:', error);
+    throw error;
+  }
+};
+
+export const addBulkCounties = async (file: File, districtId?: number) => {
+  const token = getToken();
+  try {
+    const url = getApiUrl(API_CONFIG.ENDPOINTS.ADD_BULK_COUNTIES);
+    const formData = new FormData();
+    formData.append('file', file);
+    if (districtId !== undefined && districtId !== null) formData.append('district', String(districtId));
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Add bulk counties error:', error);
+    throw error;
+  }
+};
+
+export const addBulkSubcounties = async (file: File, countyId?: number) => {
+  const token = getToken();
+  try {
+    const url = getApiUrl(API_CONFIG.ENDPOINTS.ADD_BULK_SUBCOUNTIES);
+    const formData = new FormData();
+    formData.append('file', file);
+    if (countyId !== undefined && countyId !== null) formData.append('county', String(countyId));
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Add bulk subcounties error:', error);
+    throw error;
+  }
+};
+
+export const addBulkParishes = async (file: File, subcountyId?: number) => {
+  const token = getToken();
+  try {
+    const url = getApiUrl(API_CONFIG.ENDPOINTS.ADD_BULK_PARISHES);
+    const formData = new FormData();
+    formData.append('file', file);
+    if (subcountyId !== undefined && subcountyId !== null) formData.append('subcounty', String(subcountyId));
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Add bulk parishes error:', error);
+    throw error;
+  }
+};
+
+export const addBulkVillages = async (file: File, parishId?: number) => {
+  const token = getToken();
+  try {
+    const url = getApiUrl(API_CONFIG.ENDPOINTS.ADD_BULK_VILLAGES);
+    const formData = new FormData();
+    formData.append('file', file);
+    if (parishId !== undefined && parishId !== null) formData.append('parish', String(parishId));
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      },
+      body: formData,
+    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Add bulk villages error:', error);
+    throw error;
+  }
+};
+
 // Search helpers for locations
 export const searchDistricts = async (query: string, page: number = 0, size: number = 10) => {
   const token = getToken();
@@ -1596,8 +1746,16 @@ export const getAllUsers = async (page: number = 0, size: number = 10): Promise<
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
-    const data: GetAllUsersResponse = await response.json();
-    return data;
+    const data = await response.json();
+    
+    // Ensure users is an array
+    let users = data.users || data.data || data.content || [];
+    if (!Array.isArray(users)) {
+      console.error('getAllUsers: users is not an array', data);
+      users = [];
+    }
+    
+    return { ...data, users };
   } catch (error) {
     console.error('Get all users error:', error);
     throw error;
@@ -1664,8 +1822,16 @@ export const getAllOpportunities = async (): Promise<GetAllOpportunitiesResponse
       throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
     }
 
-    const data: GetAllOpportunitiesResponse = await response.json();
-    return data;
+    const data = await response.json();
+    
+    // Ensure opportunities is an array
+    let opportunities = data.opportunities || data.data || data.content || [];
+    if (!Array.isArray(opportunities)) {
+      console.error('getAllOpportunities: opportunities is not an array', data);
+      opportunities = [];
+    }
+    
+    return { opportunities };
   } catch (error) {
     console.error('Get all opportunities error:', error);
     throw error;

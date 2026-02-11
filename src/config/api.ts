@@ -36,6 +36,13 @@ export const API_CONFIG = {
     DELETE_CATEGORY: '/api/v1/deleteCategory',
     ADD_BULK_CATEGORIES: '/api/v1/addBulkCategories',
     UPLOAD_MEDIA: '/api/v1/uploadMedia',
+    // Bulk locations
+    ADD_BULK_COUNTRIES: '/api/v1/addBulkCountries',
+    ADD_BULK_DISTRICTS: '/api/v1/addBulkDistricts',
+    ADD_BULK_COUNTIES: '/api/v1/addBulkCounties',
+    ADD_BULK_SUBCOUNTIES: '/api/v1/addBulkSubcounties',
+    ADD_BULK_PARISHES: '/api/v1/addBulkParishes',
+    ADD_BULK_VILLAGES: '/api/v1/addBulkVillages',
     // Locations
     GET_COUNTRIES: '/api/v1/getCountries',
     SEARCH_COUNTRIES: '/api/v1/searchCountries',

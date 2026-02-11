@@ -38,7 +38,14 @@ export default function OpportunitiesPage() {
       setIsLoading(true);
       setError("");
       const response = await getAllOpportunities();
-      setOpportunities(response.opportunities);
+      const opportunities = response.opportunities || [];
+      // Defensive: ensure opportunities is an array
+      if (!Array.isArray(opportunities)) {
+        console.error('Opportunities response is not an array:', response);
+        setOpportunities([]);
+      } else {
+        setOpportunities(opportunities);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to fetch opportunities");
     } finally {

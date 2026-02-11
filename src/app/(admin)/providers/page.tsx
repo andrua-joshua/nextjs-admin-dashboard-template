@@ -220,7 +220,9 @@ const ProvidersPage: React.FC = () => {
                       {provider.user.location}
                     </div>
                     <div className="text-sm text-gray-500 dark:text-gray-400">
-                      {provider.workingAreas.join(', ')}
+                      {Array.isArray(provider.workingAreas) 
+                        ? provider.workingAreas.map(area => typeof area === 'string' ? area : area.name || area.title || String(area)).join(', ')
+                        : String(provider.workingAreas || '')}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">

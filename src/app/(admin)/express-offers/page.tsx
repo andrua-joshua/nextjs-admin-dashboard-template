@@ -604,21 +604,25 @@ export default function ExpressOffersPage() {
                   <div>
                     <span className="text-sm font-medium text-gray-500 dark:text-gray-400">Services:</span>
                     <div className="ml-2 flex flex-wrap gap-1">
-                      {selectedOffer.provider.services.map((service) => (
-                        <span key={service.id} className="inline-flex px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/20 dark:text-blue-400">
-                          {service.title}
-                        </span>
-                      ))}
+                      {selectedOffer.provider.services && Array.isArray(selectedOffer.provider.services) ? (
+                        selectedOffer.provider.services.map((service) => (
+                          <span key={service.id} className="inline-flex px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full dark:bg-blue-900/20 dark:text-blue-400">
+                            {typeof service === 'string' ? service : service.title || service.name || String(service)}
+                          </span>
+                        ))
+                      ) : null}
                     </div>
                   </div>
                   <div>
                     <span className="text-sm font-medium text-gray-500 dark:text-gray-400">Working Areas:</span>
                     <div className="ml-2 flex flex-wrap gap-1">
-                      {selectedOffer.provider.workingAreas.map((area, index) => (
-                        <span key={index} className="inline-flex px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full dark:bg-green-900/20 dark:text-green-400">
-                          {area}
-                        </span>
-                      ))}
+                      {selectedOffer.provider.workingAreas && Array.isArray(selectedOffer.provider.workingAreas) ? (
+                        selectedOffer.provider.workingAreas.map((area, index) => (
+                          <span key={index} className="inline-flex px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full dark:bg-green-900/20 dark:text-green-400">
+                            {typeof area === 'string' ? area : area.name || area.title || String(area)}
+                          </span>
+                        ))
+                      ) : null}
                     </div>
                   </div>
                 </div>

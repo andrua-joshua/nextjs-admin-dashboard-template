@@ -198,7 +198,16 @@ function buildTree(items: RawCategory[]) {
         parentId = Number(it.childTo);
       }
     }
-    map.set(it.id, { ...it, parentId, children: [] });
+    // Ensure childTo is not included in the normalized category (only keep primitive props)
+    const normalizedCategory: Category = {
+      id: it.id,
+      title: it.title,
+      description: it.description,
+      icon: it.icon,
+      parentId,
+      children: [],
+    };
+    map.set(it.id, normalizedCategory);
   });
 
   map.forEach((node) => {

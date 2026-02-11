@@ -2138,6 +2138,207 @@
           }
         },
         {
+          "name": "Add Bulk Countries (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "JSON file with countries"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addBulkCountries",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addBulkCountries"]
+            }
+          }
+        },
+        {
+          "name": "Add Bulk Districts (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "JSON file with districts"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addBulkDistricts?country=1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addBulkDistricts"],
+              "query": [
+                { "key": "country", "value": "1" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Bulk Counties (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "JSON file with counties"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addBulkCounties",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addBulkCounties"]
+            }
+          }
+        },
+        {
+          "name": "Add Bulk Subcounties (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "JSON file with subcounties"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addBulkSubcounties",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addBulkSubcounties"]
+            }
+          }
+        },
+        {
+          "name": "Add Bulk Parishes (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "JSON file with parishes"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addBulkParishes",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addBulkParishes"]
+            }
+          }
+        },
+        {
+          "name": "Add Bulk Villages (STAFF ONLY)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer your_token_here"
+              },
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": "JSON file with villages"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/v1/addBulkVillages",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "v1", "addBulkVillages"]
+            }
+          }
+        },
+        {
           "name": "Get Districts",
           "request": {
             "method": "GET",

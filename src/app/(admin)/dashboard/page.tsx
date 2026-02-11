@@ -48,8 +48,14 @@ export default function DashboardPage() {
         getAllOpportunities()
       ]);
 
-      const users = usersResponse.users;
-      const opportunities = opportunitiesResponse.opportunities;
+      const users = usersResponse.users || [];
+      let opportunities = opportunitiesResponse.opportunities || [];
+      
+      // Defensive: ensure opportunities is an array
+      if (!Array.isArray(opportunities)) {
+        console.error('Opportunities response is not an array:', opportunitiesResponse);
+        opportunities = [];
+      }
 
       // Calculate KYC stats
       const kycStats = {
